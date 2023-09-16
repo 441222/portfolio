@@ -58,7 +58,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects = [] }) => {
                                     <NeumoButtonLarge onClick={() => handleProjectClick(project.sys.id)} className="w-full h-32">
                                         <div className="flex flex-col items-center justify-center h-full">
                                             <div className="w-3/4 h-2/3 overflow-hidden rounded-md">
-                                                <Image
+                                                <img
                                                     src={`https:${project.fields.image.fields.file.url}`}
                                                     alt={project.fields.title}
                                                     className="w-full h-full object-center object-cover"
@@ -74,7 +74,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects = [] }) => {
                                     <animated.div style={{ ...expandAnimation, display: displayContent ? 'block' : 'none' }}>
                                         <NeumoCard className="h-64 p-6">
                                             <div className="h-2/3 overflow-hidden rounded-md">
-                                                <Image
+                                                <img
                                                     src={`https:${project.fields.image.fields.file.url}`}
                                                     alt={project.fields.title}
                                                     className="w-full h-full object-center object-cover"
