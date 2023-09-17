@@ -2,12 +2,11 @@ import NeumoCard from './NeumoCard';
 import RandomFontText from '../components/RandomFontText';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import React, { useRef } from 'react';
+
 
 const Contact: React.FC = () => {
-  const contactRef = useRef(null); // Refを作成
   return (
-    <NeumoCard className="p-6 rounded-lg shadow-md bg-white" ref={contactRef}>
+    <NeumoCard className="p-6 rounded-lg shadow-md bg-white">
       <h2 className="text-3xl font-semibold mb-4"><RandomFontText>Contact</RandomFontText></h2>
       <div className="mb-6">
         <p className="mb-2"><RandomFontText>お気軽にご連絡ください:</RandomFontText></p>

@@ -4,13 +4,12 @@ import RandomFontText from '../components/RandomFontText';
 import React, { useEffect, useState } from 'react';
 
 const Navbar: React.FC = () => {
-  const scrollToSection = (id) => {
+  const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' }); // スクロール
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // トップへスクロール
   };

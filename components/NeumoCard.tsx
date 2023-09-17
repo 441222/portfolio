@@ -1,9 +1,9 @@
 import React from 'react';
 
-
 type NeumoCardProps = {
     children: React.ReactNode;
     className?: string;
+    small?: boolean; // small プロパティを追加
 };
 
 const NeumoCard: React.FC<NeumoCardProps> = ({ children, small }) => {
@@ -14,8 +14,6 @@ const NeumoCard: React.FC<NeumoCardProps> = ({ children, small }) => {
         {children}
       </div>
     );
-  }
-  
-  
+}
 
 export default NeumoCard;
