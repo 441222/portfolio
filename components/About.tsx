@@ -8,11 +8,11 @@ const About: React.FC = () => {
         <RandomFontText>About Me</RandomFontText>
       </h2>
 
-      <p>
+      <div>
         <RandomFontText>
           私はフロントエンドエンジニアのJohn Doeです。React, Next.js, TypeScriptを中心にウェブアプリケーションの開発に携わっています。
         </RandomFontText>
-      </p>
+      </div>
     </NeumoCard>
   );
 }

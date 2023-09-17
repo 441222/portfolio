@@ -47,11 +47,11 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
             </RandomFontText>
           </h1>
 
-          <p className="mb-6 text-shadow font-dot">
+          <div className="mb-6 text-shadow font-dot">
             <RandomFontText>
               フロントエンドエンジニア。React, Next.js, TypeScriptなどの技術を活用してウェブアプリケーションを作成しています。
             </RandomFontText>
-          </p>
+          </div>
 
           <div className="flex space-x-4">
             
