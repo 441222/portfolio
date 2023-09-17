@@ -25,7 +25,7 @@ const config: Config = {
         'neumo-border': 'rgba(255, 255, 255, 0.18)',
       },
       borderWidth: {
-        DEFAULT: '2px',
+        DEFAULT: '1.5px',
         '0': '0',
         '2': '2px',
         '3': '3px',
