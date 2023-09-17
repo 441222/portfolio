@@ -1,15 +1,50 @@
+import NeumoCard from './NeumoCard';
 import NeumoButton from './NeumoButton';
 import RandomFontText from '../components/RandomFontText';
+import React, { useEffect, useState } from 'react';
 
 const Navbar: React.FC = () => {
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' }); // スクロール
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // トップへスクロール
+  };
+
+  const [isNavbarFixed, setIsNavbarFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsNavbarFixed(true);
+      } else {
+        setIsNavbarFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="flex justify-between items-center p-2 bg-neumo shadow-neumo-out mb-10">
-      <div className="font-bold text-xl"><RandomFontText>John Doe</RandomFontText></div>
-      <div className="space-x-2">
-        <NeumoButton><RandomFontText>About</RandomFontText></NeumoButton>
-        <NeumoButton><RandomFontText>Projects</RandomFontText></NeumoButton>
-        <NeumoButton><RandomFontText>Contact</RandomFontText></NeumoButton>
+    <div className={`fixed top-0 left-0 right-0 z-10 p-2 ${isNavbarFixed ? 'bg-neumo bg-opacity-90' : ''}`}>
+      <NeumoCard small>
+      <div className="flex justify-between items-center">
+        <div className="font-bold text-xl cursor-pointer" onClick={scrollToTop}><RandomFontText>John Doe</RandomFontText></div>
+        <div className="space-x-2">
+          <NeumoButton onClick={() => scrollToSection('about')}><RandomFontText>About</RandomFontText></NeumoButton>
+          <NeumoButton onClick={() => scrollToSection('projects')}><RandomFontText>Works</RandomFontText></NeumoButton>
+          <NeumoButton onClick={() => scrollToSection('contact')}><RandomFontText>Contact</RandomFontText></NeumoButton>
+        </div>
       </div>
+      </NeumoCard>
     </div>
   );
 }

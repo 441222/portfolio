@@ -40,6 +40,7 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
       <Navbar />
 
       <main className="flex-grow">
+      <div className="mt-24"></div>
         <NeumoCard className="mb-10">
           <h1 className="text-2xl font-bold mb-6">
             <RandomFontText>
@@ -70,11 +71,11 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
         <div className="mt-10"></div>
 
         <div className="grid grid-cols-1 gap-x-10 gap-y-10">
-          <About />
-          <Projects projects={projects} />
-          <Contact />
+          <div id="about"><About  /></div>
+          <div id="projects"><Projects projects={projects} /></div>
+          <div id="contact"><Contact /></div>
           <div>
-            <h2>ランダムフォントテキスト</h2>
+            <h2 >ランダムフォントテキスト</h2>
             <h1 className="text-2xl font-bold mb-6"><RandomFontText>このテキストにはランダムなフォントが適用されます。</RandomFontText></h1>
             <RandomFontText>さらに別のテキストもランダムなフォントが適用されます。</RandomFontText>
           </div>

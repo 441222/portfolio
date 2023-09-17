@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import NeumoCard from './NeumoCard';
 import NeumoButtonLarge from './NeumoButtonLarge';
 import { useSpring, animated } from 'react-spring';
 import RandomFontText from '../components/RandomFontText';
+
 
 export interface Project {
     sys: {
@@ -25,6 +26,7 @@ interface ProjectsProps {
 const Projects: React.FC<ProjectsProps> = ({ projects = [] }) => {
     const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
     const selectedProjectIndex = projects.findIndex(p => p.sys.id === selectedProjectId);
+    const projectsRef = useRef(null); // Refを作成
 
     const handleProjectClick = (id: string) => {
         setSelectedProjectId(prevId => (prevId === id ? null : id));
@@ -47,8 +49,8 @@ const Projects: React.FC<ProjectsProps> = ({ projects = [] }) => {
     
 
     return (
-        <NeumoCard className="p-8">
-            <h1 className="text-2xl font-bold mb-8"><RandomFontText>Projects</RandomFontText></h1>
+        <NeumoCard className="p-8" ref={projectsRef}>
+            <h1 className="text-2xl font-bold mb-8"><RandomFontText>Works</RandomFontText></h1>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {projects.map((project, index) => {
                     const order = (index > selectedProjectIndex && selectedProjectId) ? index + 1 : index;

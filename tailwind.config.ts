@@ -14,7 +14,7 @@ const config: Config = {
         'stglass-bg': 'rgba(255, 255, 255, 0.4)',  // ガラス効果の背景色
       },
       backdropFilter: {
-        'blur': 'blur(4px)',  // ぼかし効果
+        'blur': 'blur(2.5px)',  // ぼかし効果
       },
       boxShadow: {
         'neumo': '20px 20px 60px #bcbcbc, -20px -20px 60px #ffffff',
