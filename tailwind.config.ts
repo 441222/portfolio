@@ -25,7 +25,7 @@ const config: Config = {
         'neumo-border': 'rgba(255, 255, 255, 0.18)',
       },
       borderWidth: {
-        DEFAULT: '1px',
+        DEFAULT: '2px',
         '0': '0',
         '2': '2px',
         '3': '3px',
@@ -34,12 +34,14 @@ const config: Config = {
         '8': '8px',
       },
 
-      fontFamily: {
-        'noto-sans': ['Noto Sans JP', 'sans'],
-      },
+
       textColor: {
         'white': '#ffffff', // デフォルトフォントカラーを白に変更
       },
+
+      fontFamily: {
+        notojp: ['var(--font-notojp)'],
+        },
       
     },
   },
