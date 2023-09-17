@@ -54,7 +54,7 @@ const config: Config = {
   },
   variants: {},
   plugins: [
-    function ({ addUtilities }) {
+    function({ addUtilities }: { addUtilities: any }) {
       const newUtilities = {
         '.text-shadow': {
           'text-shadow': '2px 2px 2px rgba(255, 255, 255, 0.2)', // ここをカスタマイズして、希望のシャドウを設定
