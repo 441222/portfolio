@@ -96,7 +96,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects = [] }) => {
                                                 href={project.fields.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-blue-800 hover:underline "
+                                                className="text-blue-500 hover:underline "
                                             >
                                                 <RandomFontText>
                                                     View Project

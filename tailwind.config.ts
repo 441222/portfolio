@@ -11,7 +11,7 @@ const config: Config = {
       backgroundColor: {
         'glass-bg': 'rgba(255, 255, 255, 0.1)',  // ガラス効果の背景色
         'miglass-bg': 'rgba(255, 255, 255, 0.3)',  // ガラス効果の背景色
-        'stglass-bg': 'rgba(255, 255, 255, 0.6)',  // ガラス効果の背景色
+        'stglass-bg': 'rgba(255, 255, 255, 0.4)',  // ガラス効果の背景色
       },
       backdropFilter: {
         'blur': 'blur(4px)',  // ぼかし効果
