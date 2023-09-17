@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NeumoCard from './NeumoCard';
 import NeumoButtonLarge from './NeumoButtonLarge';
 import { useSpring, animated } from 'react-spring';
+import RandomFontText from '../components/RandomFontText';
 
 export interface Project {
     sys: {
@@ -47,7 +48,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects = [] }) => {
 
     return (
         <NeumoCard className="p-8">
-            <h1 className="text-2xl font-bold mb-8">Projects</h1>
+            <h1 className="text-2xl font-bold mb-8"><RandomFontText>Projects</RandomFontText></h1>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {projects.map((project, index) => {
                     const order = (index > selectedProjectIndex && selectedProjectId) ? index + 1 : index;
@@ -64,7 +65,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects = [] }) => {
                                                     className="w-full h-full object-center object-cover"
                                                 />
                                             </div>
-                                            <span>{project.fields.title}</span>
+                                            <span><RandomFontText>{project.fields.title}</RandomFontText></span>
                                         </div>
                                     </NeumoButtonLarge>
                                 </div>
@@ -80,12 +81,14 @@ const Projects: React.FC<ProjectsProps> = ({ projects = [] }) => {
                                                     className="w-full h-full object-center object-cover"
                                                 />
                                             </div>
-                                            <h2 className="text-xl mt-4 mb-4">{project.fields.title}</h2>
-                                            <p className="mb-4">{project.fields.description}</p>
+                                            <h2 className="text-xl mt-4 mb-4"><RandomFontText>{project.fields.title}</RandomFontText></h2>
+                                            <p className="mb-4"><RandomFontText>{project.fields.description}</RandomFontText></p>
                                             <ul className="mb-4">
                                                 {project.fields.technologiesUsed?.map((tech, techIndex) => (
-                                                    <li key={techIndex} className="inline-block mr-4 bg-gray-200 px-3 py-1 rounded-md text-sm">
-                                                        {tech}
+                                                    <li key={techIndex} className="inline-block mr-4 bg-gray-200 px-3 py-1 rounded-md text-sm text-gray-700">
+                                                        <RandomFontText>
+                                                            {tech}
+                                                        </RandomFontText>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -93,9 +96,11 @@ const Projects: React.FC<ProjectsProps> = ({ projects = [] }) => {
                                                 href={project.fields.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-blue-500 hover:underline"
+                                                className="text-blue-400 hover:underline "
                                             >
-                                                View Project
+                                                <RandomFontText>
+                                                    View Project
+                                                </RandomFontText>
                                             </a>
                                         </NeumoCard>
                                     </animated.div>

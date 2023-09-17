@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 type NeumoCardProps = {
     children: React.ReactNode;
     className?: string;
@@ -8,7 +9,9 @@ type NeumoCardProps = {
 const NeumoCard: React.FC<NeumoCardProps> = ({ children }) => {
     return (
         <div className="bg-glass-bg p-6 rounded-xl shadow-glass backdrop-blur border border-neumo-border">
-            {children}
+
+                {children}
+
         </div>
     );
 }

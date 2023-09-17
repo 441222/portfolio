@@ -1,0 +1,12 @@
+.randomFontText {
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    transition: font-family 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .randomFontText:hover {
+    font-family: 'Noto Sans', sans-serif;
+  }
+  
