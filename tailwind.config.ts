@@ -39,9 +39,6 @@ const config: Config = {
         'white': '#ffffff', // デフォルトフォントカラーを白に変更
       },
 
-      fontFamily: {
-        notojp: ['var(--font-notojp)'],
-        },
       
     },
   },
