@@ -93,7 +93,7 @@ class FluidShaderMaterial extends ShaderMaterial {
 
     // ノイズを使用してカラーグラデーションを作成
     float noiseValue = snoise((uv_centered * 2.0 - 1.0) * 1500.0 + uTime * 0.2);
-    float noiseValue2 = snoise((uv_centered * 5.0 - 1.0) * 800.0 + uTime * 0.25);
+    float noiseValue2 = snoise((uv_centered * 2.0 - 1.0) * 800.0 + uTime * 0.25);
 
     // マゼンタとグリーンのネオンカラーでグラデーションを作成
     vec3 neonMagenta = vec3(1.0, 0.0, 1.0); // マゼンタ
