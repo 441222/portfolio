@@ -12,7 +12,11 @@ const getRandomFont = () => {
   return fontList[Math.floor(Math.random() * fontList.length)];
 };
 
-const RandomFontText: React.FC = ({ children }) => {
+interface RandomFontTextProps {
+  children: string;
+}
+
+const RandomFontText: React.FC<RandomFontTextProps> = ({ children }) => {
   const [hovered, setHovered] = useState(false);
 
   const handleMouseEnter = () => {

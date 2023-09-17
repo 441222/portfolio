@@ -5,9 +5,7 @@ const About: React.FC = () => {
   return (
     <NeumoCard>
       <h2 className="text-xl font-bold mb-4">
-        <RandomFontText>
-          About Me
-        </RandomFontText>
+        <RandomFontText>About Me</RandomFontText>
       </h2>
 
       <p>
