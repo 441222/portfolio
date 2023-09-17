@@ -10,7 +10,7 @@ const NeumoButton: React.FC<NeumoButtonProps> = ({ children, onClick }) => {
     return (
       <button 
         onClick={onClick}
-        className="bg-glass-bg p-4 rounded-xl shadow-glass backdrop-blur border border-neumo-border transition-transform transform active:scale-95"
+        className="bg-glass-bg p-3 rounded-xl shadow-glass backdrop-blur border border-neumo-border transition-transform transform active:scale-95"
       >
         {children}
       </button>
