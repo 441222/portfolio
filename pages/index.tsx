@@ -71,9 +71,12 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
         <div className="mt-10"></div>
 
         <div className="grid grid-cols-1 gap-x-10 gap-y-10">
-          <div id="about"><About  /></div>
-          <div id="projects"><Projects projects={projects} /></div>
-          <div id="contact"><Contact /></div>
+          <div id="about"></div>
+          <About  />
+          <div id="projects"></div>
+          <Projects projects={projects} />
+          <div id="contact"></div>
+          <Contact />
           <div>
             <h2 >ランダムフォントテキスト</h2>
             <h1 className="text-2xl font-bold mb-6"><RandomFontText>このテキストにはランダムなフォントが適用されます。</RandomFontText></h1>

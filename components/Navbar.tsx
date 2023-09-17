@@ -4,12 +4,16 @@ import RandomFontText from '../components/RandomFontText';
 import React, { useEffect, useState } from 'react';
 
 const Navbar: React.FC = () => {
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 50; // 調整したいオフセット値（ピクセル単位で調整）
+      const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({ top: elementTop - offset, behavior: 'smooth' });
     }
   };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // トップへスクロール
   };
