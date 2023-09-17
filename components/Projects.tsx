@@ -85,7 +85,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects = [] }) => {
                                             <p className="mb-4"><RandomFontText>{project.fields.description}</RandomFontText></p>
                                             <ul className="mb-4">
                                                 {project.fields.technologiesUsed?.map((tech, techIndex) => (
-                                                    <li key={techIndex} className="inline-block mr-4 bg-gray-200 px-3 py-1 rounded-md text-sm text-gray-900">
+                                                    <li key={techIndex} className="inline-block mr-4 bg-stglass-bg shadow-glass backdrop-blur border border-neumo-border px-3 py-1 rounded-md text-sm text-gray-900">
                                                         <RandomFontText>
                                                             {tech}
                                                         </RandomFontText>
@@ -96,7 +96,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects = [] }) => {
                                                 href={project.fields.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-blue-400 hover:underline "
+                                                className="text-blue-800 hover:underline "
                                             >
                                                 <RandomFontText>
                                                     View Project
