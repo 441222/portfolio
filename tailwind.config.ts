@@ -22,7 +22,16 @@ const config: Config = {
         'xl': '1.2rem', 
       },
       borderColor: {
-        'neumo-border': '0.3px, solid, rgba(255, 255, 255, 0.1)',
+        'neumo-border': 'rgba(255, 255, 255, 0.18)',
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        '0': '0',
+        '2': '2px',
+        '3': '3px',
+        '4': '4px',
+        '6': '6px',
+        '8': '8px',
       },
 
       fontFamily: {
