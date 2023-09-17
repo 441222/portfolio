@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
       <NeumoCard small>
       <div className="flex justify-between items-center">
         <div className="font-bold text-xl cursor-pointer" onClick={scrollToTop}><RandomFontText>John Doe</RandomFontText></div>
-        <div className="space-x-2">
+        <div className="space-x-2 ">
           <NeumoButton onClick={() => scrollToSection('about')}><RandomFontText>About</RandomFontText></NeumoButton>
           <NeumoButton onClick={() => scrollToSection('projects')}><RandomFontText>Works</RandomFontText></NeumoButton>
           <NeumoButton onClick={() => scrollToSection('contact')}><RandomFontText>Contact</RandomFontText></NeumoButton>
