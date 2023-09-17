@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 
 const fontList = [
-  'Arial, sans-serif',
-  'Verdana, sans-serif',
-  'Georgia, serif',
-  'Times New Roman, serif',
-  'Courier New, monospace',
+
+    'Dela Gothic One, cursive',
+    'DotGothic16, sans-serif',
+    'Hachi Maru Pop, cursive',
+    'Kiwi Maru, serif',
+    'Kosugi Maru, sans-serif',
+    'Noto Serif JP, serif',
+    'Reggae One, cursive',
+    'Shippori Mincho B1, serif',
+    'Yuji Boku, serif',
+    'Zen Antique, serif',
 ];
+
+
 
 const getRandomFont = () => {
   return fontList[Math.floor(Math.random() * fontList.length)];
