@@ -18,6 +18,7 @@ const config: Config = {
         'neumo': '20px 20px 60px #bcbcbc, -20px -20px 60px #ffffff',
         'glass': '0 8px 32px rgba(31, 38, 135, 0.37)',  // ガラス効果のシャドウ
       },
+      
       borderRadius: {
         'xl': '1.1rem', 
       },
@@ -39,6 +40,8 @@ const config: Config = {
         'default': '#ffffff',
       },
       fontFamily: {
+        dot: ['DotGothic16', 'sans-serif'],
+        shippori: ['Shippori Mincho', 'serif'],
         sans: ['Noto Sans JP', 'sans-serif'],
         serif: ['Noto Serif JP', 'serif'],
         zenKurenaido: ['Zen Kurenaido', 'sans-serif']
@@ -50,6 +53,20 @@ const config: Config = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.text-shadow': {
+          'text-shadow': '2px 2px 2px rgba(255, 255, 255, 0.2)', // ここをカスタマイズして、希望のシャドウを設定
+        },
+        '.text-shadow-md': {
+          'text-shadow': '4px 4px 4px rgba(255, 255, , 0.2)', 
+        },
+        // 他のサイズや色のシャドウもここに追加できます
+      }
+
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }
+  ],
 }
 export default config
