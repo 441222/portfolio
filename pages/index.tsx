@@ -43,7 +43,7 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
           
           <NeumoCard className="mb-10">
             <h1 className="text-2xl font-bold mb-6">John Doe</h1>
-            <p className="mb-6 text-shadow font-dot">フロントエンドエンジニア。React, Next.js, TypeScriptなどの技術を活用してウェブアプリケーションを作成しています。</p>
+            <p className="mb-6 text-shadow font-dot ">フロントエンドエンジニア。React, Next.js, TypeScriptなどの技術を活用してウェブアプリケーションを作成しています。</p>
 
             <div className="flex space-x-4">
               <NeumoButton>プロジェクト</NeumoButton>

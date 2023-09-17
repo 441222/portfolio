@@ -1,16 +1,13 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "~tailwindcss/base";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
 
 @import url("https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Serif+JP:wght@200&family=Shippori+Mincho+B1&display=swap');
 
-@layer base {
+@layer ~base {
   html {
-    text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
-    font-family: 'Shippori Mincho B1', serif;
-    @apply text-default;
-    
+
   }
 }
 
@@ -29,8 +26,8 @@
 }
 
 body {
+  @apply text-white font-dot text-shadow;
   
-  color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,

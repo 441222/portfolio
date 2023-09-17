@@ -37,7 +37,7 @@ const config: Config = {
 
 
       textColor: {
-        'default': '#ffffff',
+        white: '#ffffff',
       },
       fontFamily: {
         dot: ['DotGothic16', 'sans-serif'],
@@ -57,10 +57,10 @@ const config: Config = {
     function({ addUtilities }: { addUtilities: any }) {
       const newUtilities = {
         '.text-shadow': {
-          'text-shadow': '2px 2px 2px rgba(255, 255, 255, 0.2)', // ここをカスタマイズして、希望のシャドウを設定
+          'text-shadow': '2px 2px 2px rgba(0, 0, 0, 0.2)', // ここをカスタマイズして、希望のシャドウを設定
         },
         '.text-shadow-md': {
-          'text-shadow': '4px 4px 4px rgba(255, 255, , 0.2)', 
+          'text-shadow': '4px 4px 4px rgba(0, 0, 0, 0.2)', 
         },
         // 他のサイズや色のシャドウもここに追加できます
       }

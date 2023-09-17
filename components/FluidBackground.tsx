@@ -78,7 +78,7 @@ class FluidShaderMaterial extends ShaderMaterial {
     vec3 binnedColor;
     binnedColor.r = floor(color.r * 6.0) / 6.0;
     binnedColor.g = floor(color.g * 6.0) / 6.0;
-    binnedColor.b = floor(color.b * 6.0) / 6.0;
+    binnedColor.b = floor(color.b * 6.0) / 4.0;
     return binnedColor;
 }
 
@@ -92,7 +92,7 @@ class FluidShaderMaterial extends ShaderMaterial {
     vec2 uv_centered = (cell + 0.5) * pixelSize;
 
     // ノイズを使用してカラーグラデーションを作成
-    float noiseValue = snoise((uv_centered * 2.0 - 1.0) * 1000.0 + uTime * 0.1);
+    float noiseValue = snoise((uv_centered * 2.0 - 1.0) * 1500.0 + uTime * 0.2);
     // マゼンタとグリーンのネオンカラーでグラデーションを作成
     vec3 neonMagenta = vec3(0.0, 1.0, 1.0); // マゼンタ
     vec3 neonGreen = vec3(0.0, 1.0, 0.0);   // グリーン
@@ -100,7 +100,7 @@ class FluidShaderMaterial extends ShaderMaterial {
 
 
     // 色相をシフト
-    color = hueShiftYIQ(color, - uTime * 0.1 * 3.1415926535897932384626433832795);
+    color = hueShiftYIQ(color, - uTime * 0.03 * 3.1415926535897932384626433832795);
 
     // 色数を8bitに制限
     color = reduceColor(color);
