@@ -36,8 +36,15 @@ const config: Config = {
 
 
       textColor: {
-        'white': '#ffffff', // デフォルトフォントカラーを白に変更
+        'default': '#ffffff',
       },
+      fontFamily: {
+        sans: ['Noto Sans JP', 'sans-serif'],
+        serif: ['Noto Serif JP', 'serif'],
+        zenKurenaido: ['Zen Kurenaido', 'sans-serif']
+      },
+      
+
 
       
     },
