@@ -76,16 +76,16 @@ class FluidShaderMaterial extends ShaderMaterial {
   vec3 reduceColor(vec3 color) {
     // 各チャネルの色を4階調（2ビット）に制限
     vec3 binnedColor;
-    binnedColor.r = floor(color.r * 8.0) / 8.0;
-    binnedColor.g = floor(color.g * 8.0) / 8.0;
-    binnedColor.b = floor(color.b * 8.0) / 8.0;
+    binnedColor.r = floor(color.r * 6.0) / 6.0;
+    binnedColor.g = floor(color.g * 6.0) / 6.0;
+    binnedColor.b = floor(color.b * 6.0) / 6.0;
     return binnedColor;
 }
 
 
   void main() {
     // ピクセルのサイズ
-    float pixelSize = 0.00005;
+    float pixelSize = 0.00003;
     vec2 cell = floor(vUv / pixelSize); 
 
     // セルの中央のUVを取得
