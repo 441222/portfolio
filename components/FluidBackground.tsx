@@ -85,7 +85,7 @@ class FluidShaderMaterial extends ShaderMaterial {
 
   void main() {
     // ピクセルのサイズ
-    float pixelSize = 0.00003;
+    float pixelSize = 0.00005;
     vec2 cell = floor(vUv / pixelSize); 
 
     // セルの中央のUVを取得

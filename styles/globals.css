@@ -8,6 +8,7 @@
 @layer base {
   html {
     font-family: 'Noto Serif JP', serif;
+    
   }
 }
 
@@ -26,6 +27,7 @@
 }
 
 body {
+  @apply text-default;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
