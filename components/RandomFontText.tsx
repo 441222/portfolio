@@ -32,7 +32,7 @@ const getRandomFont = () => {
   }
   
   const RandomFontText: React.FC<RandomFontTextProps> = ({ children }) => {
-    const [hovered, setHovered] = useState(false);
+    const [centeredOnMobile, setCenteredOnMobile] = useState(false);
     const ref = useRef<HTMLDivElement | null>(null);
   
     useEffect(() => {
@@ -42,7 +42,7 @@ const getRandomFont = () => {
           const viewportHeight = window.innerHeight;
           const isAtCenter = entry.boundingClientRect.top < viewportHeight / 2 && entry.boundingClientRect.bottom > viewportHeight / 2;
   
-          setHovered(isAtCenter);
+          setCenteredOnMobile(isAtCenter);
         };
   
         const observerOptions = {
@@ -64,16 +64,11 @@ const getRandomFont = () => {
       }
     }, []);
   
-    const handleMouseEnter = () => {
-      if (!isMobile()) setHovered(true);
-    };
-  
-    const handleMouseLeave = () => {
-      if (!isMobile()) setHovered(false);
-    };
+    const handleMouseEnter = () => setCenteredOnMobile(true);
+    const handleMouseLeave = () => setCenteredOnMobile(false);
   
     const characters = children.split('').map((char, index) => {
-      const currentFont = hovered ? 'Noto Sans, sans-serif' : getRandomFont();
+      const currentFont = centeredOnMobile ? 'Noto Sans, sans-serif' : getRandomFont();
       return (
         <span key={index} style={{ fontFamily: currentFont }}>
           {char}
