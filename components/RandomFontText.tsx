@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const fontList = [
 
@@ -17,42 +17,77 @@ const fontList = [
 
 
 const getRandomFont = () => {
-  return fontList[Math.floor(Math.random() * fontList.length)];
-};
-
-interface RandomFontTextProps {
-  children: string;
-}
-
-const RandomFontText: React.FC<RandomFontTextProps> = ({ children }) => {
-  const [hovered, setHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setHovered(true);
+    return fontList[Math.floor(Math.random() * fontList.length)];
   };
-
-  const handleMouseLeave = () => {
-    setHovered(false);
+  
+  const isMobile = () => {
+      return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   };
-
-  const characters = children.split(''); // テキストを文字単位に分割
-  const randomizedCharacters = characters.map((char, index) => {
-    const font = hovered ? 'Noto Sans, sans-serif' : getRandomFont(); // ホバー時はNoto Sansに、それ以外はランダムなフォントに設定
+  
+  interface RandomFontTextProps {
+    children: string;
+  }
+  
+  const RandomFontText: React.FC<RandomFontTextProps> = ({ children }) => {
+    const [font, setFont] = useState<string>(getRandomFont());
+    const [hovered, setHovered] = useState(false);
+    const ref = useRef<HTMLDivElement | null>(null);
+  
+    useEffect(() => {
+      if (isMobile()) {
+        const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+          const entry = entries[0];
+          const viewportHeight = window.innerHeight;
+          const isAtCenter = entry.boundingClientRect.top < viewportHeight / 2 && entry.boundingClientRect.bottom > viewportHeight / 2;
+  
+          if (entry.isIntersecting && isAtCenter) {
+              setFont('Noto Sans, sans-serif');
+          } else {
+              setFont(getRandomFont());
+          }
+        };
+  
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1, // Adjust as needed
+        };
+  
+        const observer = new IntersectionObserver(handleIntersection, observerOptions);
+        if (ref.current) {
+          observer.observe(ref.current);
+        }
+  
+        return () => {
+          if (ref.current) {
+            observer.unobserve(ref.current);
+          }
+        };
+      }
+    }, []);
+  
+    const handleMouseEnter = () => {
+      if (!isMobile()) setHovered(true);
+    };
+  
+    const handleMouseLeave = () => {
+      if (!isMobile()) setHovered(false);
+    };
+  
+    const characters = children.split('').map((char, index) => {
+      const currentFont = isMobile() ? font : (hovered ? 'Noto Sans, sans-serif' : getRandomFont());
+      return (
+        <span key={index} style={{ fontFamily: currentFont }}>
+          {char}
+        </span>
+      );
+    });
+  
     return (
-      <span key={index} style={{ fontFamily: font }}>
-        {char}
-      </span>
+      <div ref={ref} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        {characters}
+      </div>
     );
-  });
-
-  return (
-    <div
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {randomizedCharacters}
-    </div>
-  );
-};
-
-export default RandomFontText;
+  };
+  
+  export default RandomFontText;
