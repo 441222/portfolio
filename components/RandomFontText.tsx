@@ -20,9 +20,12 @@ const getRandomFont = () => {
     return fontList[Math.floor(Math.random() * fontList.length)];
   };
   
-  const isMobile = () => {
-      return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  };
+const isMobile = () => {
+    if (typeof window !== 'undefined') {
+        return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    }
+    return false;
+    };
   
   interface RandomFontTextProps {
     children: string;
