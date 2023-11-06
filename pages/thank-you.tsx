@@ -31,7 +31,7 @@ const ThankYou: React.FC = () => {
           </p>
 
           {/* Directly use NeumoButton as a link */}
-          <NeumoButton as="a" href="/">
+          <NeumoButton as="a" href="/portfolio/">
             ホームに戻る
           </NeumoButton>
         </NeumoCard>
