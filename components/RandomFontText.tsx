@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, ReactElement  } from 'react';
 
 const fontList = [
   'Dela Gothic One, cursive',
@@ -24,6 +24,11 @@ const isMobile = () => {
   return false;
 };
 
+interface ChildElementProps {
+  children?: React.ReactNode;
+  // 他にもpropsがある場合はここに追加します。
+}
+
 interface RandomFontTextProps {
   children: React.ReactNode;
 }
@@ -33,30 +38,29 @@ const RandomFontText: React.FC<RandomFontTextProps> = ({ children }) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (isMobile()) {
-      const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-        const entry = entries[0];
-        const viewportHeight = window.innerHeight;
-        const isAtCenter = entry.boundingClientRect.top < viewportHeight / 2 && entry.boundingClientRect.bottom > viewportHeight / 2;
+    const observerElement = ref.current; // ref.currentの値を効果のクリーンアップ関数で使用するために変数に代入
 
-        setCenteredOnMobile(isAtCenter);
-      };
-
+    if (isMobile() && observerElement) {
       const observerOptions = {
         root: null,
         rootMargin: '0px',
         threshold: [0.4, 0.6],
       };
 
-      const observer = new IntersectionObserver(handleIntersection, observerOptions);
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
+      const observer = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        const viewportHeight = window.innerHeight;
+        const isAtCenter =
+          entry.boundingClientRect.top < viewportHeight / 2 &&
+          entry.boundingClientRect.bottom > viewportHeight / 2;
+
+        setCenteredOnMobile(isAtCenter);
+      }, observerOptions);
+
+      observer.observe(observerElement);
 
       return () => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
+        observer.unobserve(observerElement);
       };
     }
   }, []);
@@ -77,12 +81,11 @@ const RandomFontText: React.FC<RandomFontTextProps> = ({ children }) => {
 
   const renderChildren = (children: React.ReactNode): React.ReactNode => {
     return React.Children.map(children, (child) => {
-      if (typeof child === 'string') {
-        return renderText(child);
-      } else if (React.isValidElement(child) && child.type === 'br') {
-        return <br />;
-      } else if (React.isValidElement(child) && child.props.children) {
-        return React.cloneElement(child, {
+      // ... その他の条件分岐
+  
+      if (React.isValidElement<ChildElementProps>(child) && child.props.children) {
+        // 正しい型アサーションを使用する
+        return React.cloneElement(child as ReactElement<ChildElementProps>, {
           ...child.props,
           children: renderChildren(child.props.children),
         });

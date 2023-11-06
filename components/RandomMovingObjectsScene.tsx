@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { Mesh } from 'three'; // threeからMeshの型をインポートします。
 import { Box, OrbitControls } from '@react-three/drei';
 
 const RotatingCube = () => {
-  const meshRef = useRef();
+  // useRefにMeshの型を指定します。
+  const meshRef = useRef<Mesh>(null);
 
   useFrame(() => {
     if (meshRef.current) {

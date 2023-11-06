@@ -191,11 +191,15 @@ const ThreeScene: React.FC = () => {
 
           object.position.add(object.userData.moveDirection);
 
-          ['x', 'y', 'z'].forEach((axis) => {
-            if (Math.abs(object.position[axis]) > BOUNDARY) {
-              object.userData.moveDirection[axis] = -object.userData.moveDirection[axis];
-            }
-          });
+          const position = object.position;
+          const moveDirection = object.userData.moveDirection;
+
+          if (Math.abs(position.x) > BOUNDARY) moveDirection.x = -moveDirection.x;
+          if (Math.abs(position.y) > BOUNDARY) moveDirection.y = -moveDirection.y;
+          if (Math.abs(position.z) > BOUNDARY) moveDirection.z = -moveDirection.z;
+
+
+
         });
 
         renderer.render(scene, camera);
@@ -208,7 +212,9 @@ const ThreeScene: React.FC = () => {
 
       return () => {
         window.removeEventListener('resize', handleResize);
-        cancelAnimationFrame(sceneRef.current.raf);
+        if (typeof sceneRef.current.raf === 'number') {
+          cancelAnimationFrame(sceneRef.current.raf);
+        }
       };
     }
   }, []);
