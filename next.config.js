@@ -3,7 +3,7 @@ const branchName = process.env.BRANCH_NAME || ""; // デフォルト値を空文
 module.exports = {
   reactStrictMode: true,
   assetPrefix: branchName,
-  basePath: branchName,
+  basePath: '/portfolio',
   webpack: (config, { isServer }) => {
     // GLSLファイルを処理するローダーの設定
     config.module.rules.push({
