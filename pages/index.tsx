@@ -9,8 +9,10 @@ import Projects from '../components/Projects';
 import Contact from '../components/Contact';
 import contentfulClient from '../lib/contentful';
 import FluidBackground from '../components/FluidBackground';
+import RandomMovingObjectsScene from '../components/RandomMovingObjectsScene';
 import { Project } from '../components/Projects';
 import RandomFontText from '../components/RandomFontText';
+import ThreeScene from '../components/ThreeScene';
 
 export const getStaticProps = async () => {
   try {
@@ -28,15 +30,23 @@ export const getStaticProps = async () => {
   }
 };
 
+
+
 const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
   return (
     <div className="min-h-screen bg-neumo p-4 flex flex-col">
       <Head>
-        <title>John Doe - フロントエンドエンジニア</title>
-        <meta name="description" content="John Doeのポートフォリオサイト" />
+        <title>Yoshiyuki Ootani</title>
+        <meta name="description" content="Yoshiyuki Ootaniのポートフォリオサイト" />
       </Head>
 
+
+      <ThreeScene />
+
+      {/*
       <FluidBackground />
+      <RandomMovingObjectsScene />
+      */}
       <Navbar />
 
       <main className="flex-grow">
@@ -44,29 +54,16 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
         <NeumoCard className="mb-10">
           <h1 className="text-2xl font-bold mb-6">
             <RandomFontText>
-              John Doe
+              大谷芳之 / Yoshiyuki Ootani
             </RandomFontText>
           </h1>
 
           <div className="mb-6 text-shadow font-dot">
             <RandomFontText>
-              フロントエンドエンジニア。React, Next.js, TypeScriptなどの技術を活用してウェブアプリケーションを作成しています。
+              メディアアート系のプログラミングができます。
             </RandomFontText>
           </div>
 
-          <div className="flex space-x-4">
-            
-            <NeumoButton>
-              <RandomFontText>
-                プロジェクト
-              </RandomFontText>
-            </NeumoButton>
-            <NeumoButton>
-              <RandomFontText>
-                連絡する
-              </RandomFontText>
-            </NeumoButton>
-          </div>
         </NeumoCard>
         <div className="mt-10"></div>
 
@@ -77,11 +74,7 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
           <Projects projects={projects} />
           <div id="contact"></div>
           <Contact />
-          <div>
-            <h2 >ランダムフォントテキスト</h2>
-            <h1 className="text-2xl font-bold mb-6"><RandomFontText>このテキストにはランダムなフォントが適用されます。</RandomFontText></h1>
-            <RandomFontText>さらに別のテキストもランダムなフォントが適用されます。</RandomFontText>
-          </div>
+
         </div>
       </main>
 

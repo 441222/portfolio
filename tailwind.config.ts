@@ -14,11 +14,12 @@ const config: Config = {
         'stglass-bg': 'rgba(255, 255, 255, 0.4)',  // ガラス効果の背景色
       },
       backdropFilter: {
-        'blur': 'blur(2.5px)',  // ぼかし効果
+        'blur': 'blur(1px)',  // ぼかし効果
       },
       boxShadow: {
         'neumo': '20px 20px 60px #bcbcbc, -20px -20px 60px #ffffff',
-        'glass': '0 8px 32px rgba(31, 38, 135, 0.37)',  // ガラス効果のシャドウ
+        'glass': '0 4px 16px rgba(31, 38, 135, 0.37)',  // ガラス効果のシャドウ
+        'inset-neumo': 'inset 0 2px 8px rgba(31, 38, 135, 0.37)',
       },
       
       borderRadius: {

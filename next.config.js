@@ -1,12 +1,19 @@
-/** @type {import('next').NextConfig} */
+const branchName = process.env.BRANCH_NAME || ""; // デフォルト値を空文字列に設定
 
-const branchName = process.env.BRANCH_NAME ? "/" + process.env.BRANCH_NAME : "";
-
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
   assetPrefix: branchName,
   basePath: branchName,
-  
-};
+  webpack: (config, { isServer }) => {
+    // GLSLファイルを処理するローダーの設定
+    config.module.rules.push({
+      test: /\.(glsl|frag|vert)$/,
+      use: [
+        'raw-loader',
+        'glslify-loader'
+      ],
+    });
 
-module.exports = nextConfig;
+    return config;
+  },
+};
