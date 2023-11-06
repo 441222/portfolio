@@ -17,7 +17,6 @@ const ThankYou: React.FC = () => {
 
       <ThreeScene />
 
-      <Navbar />
 
       <main className="flex-grow flex items-center justify-center">
         <NeumoCard className="max-w-lg w-full text-center p-10">
