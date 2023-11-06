@@ -30,6 +30,7 @@ const ThankYou: React.FC = () => {
             内容を確認した後、追ってご連絡いたします。
           </p>
 
+          {/* Directly use NeumoButton as a link */}
           <NeumoButton as="a" href="/">
             ホームに戻る
           </NeumoButton>
@@ -39,6 +40,6 @@ const ThankYou: React.FC = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default ThankYou;
