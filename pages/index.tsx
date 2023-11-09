@@ -14,6 +14,7 @@ import { Project } from '../components/Projects';
 import RandomFontText from '../components/RandomFontText';
 import ThreeScene from '../components/ThreeScene';
 
+
 export const getStaticProps = async () => {
   try {
     const entries = await contentfulClient.getEntries({ content_type: 'project' });
@@ -41,6 +42,8 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
       </Head>
 
 
+
+
       <ThreeScene />
 
       {/*
@@ -62,6 +65,7 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
             <RandomFontText>
               メディアアート系のプログラミングができます。
             </RandomFontText>
+
           </div>
 
         </NeumoCard>
@@ -77,6 +81,9 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
 
         </div>
       </main>
+      <div className="mt-10"></div>
+
+
 
       <Footer />
     </div>

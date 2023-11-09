@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
     <div className={`fixed top-0 left-0 right-0 z-10 p-2 ${isNavbarFixed ? 'bg-neumo bg-opacity-90' : ''}`}>
       <NeumoCard small>
       <div className="flex justify-between items-center">
-        <div className="font-bold text-xl cursor-pointer" onClick={scrollToTop}><RandomFontText>portfolio</RandomFontText></div>
+        <div className="font-bold text-xl cursor-pointer" onClick={scrollToTop}><RandomFontText>ootani no portfolio</RandomFontText></div>
         <div className="space-x-2 ">
           <NeumoButton onClick={() => scrollToSection('about')}><RandomFontText>About</RandomFontText></NeumoButton>
           <NeumoButton onClick={() => scrollToSection('projects')}><RandomFontText>Works</RandomFontText></NeumoButton>

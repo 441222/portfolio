@@ -1,6 +1,7 @@
 // ContactForm.tsx
 import React, { useState } from 'react';
 import NeumoButton from './NeumoButton';
+import RandomFontText from '../components/RandomFontText';
 
 const ContactForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ const ContactForm: React.FC = () => {
   return (
     <form action={FORMCAKE_ENDPOINT} method="POST">
       <div className="mb-4">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">メールアドレス</label>
+      <RandomFontText>メールアドレス</RandomFontText>
         <input
           type="email"
           name="email"
@@ -23,9 +24,9 @@ const ContactForm: React.FC = () => {
           className="mt-1 block w-full p-2 rounded-xl bg-glass-bg border border-neumo-border backdrop-blur shadow-inset-neumo"
         />
       </div>
-      
+
       <div className="mb-4">
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700">お問い合わせ内容</label>
+        <RandomFontText>お問い合わせ内容</RandomFontText>
         <textarea
           id="message"
           name="message"
@@ -35,10 +36,10 @@ const ContactForm: React.FC = () => {
           className="mt-1 block w-full p-2 rounded-xl bg-glass-bg border border-neumo-border backdrop-blur shadow-inset-neumo"
         />
       </div>
-      
+
       <div className="mb-4 text-left">
         <NeumoButton type="submit">
-          送信
+          <RandomFontText>送信</RandomFontText>
         </NeumoButton>
       </div>
     </form>

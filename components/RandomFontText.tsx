@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, ReactElement  } from 'react';
+import React, { useState, useEffect, useRef, ReactElement } from 'react';
 
 const fontList = [
   'Dela Gothic One, cursive',
@@ -34,11 +34,11 @@ interface RandomFontTextProps {
 }
 
 const RandomFontText: React.FC<RandomFontTextProps> = ({ children }) => {
-  const [centeredOnMobile, setCenteredOnMobile] = useState(false);
+  const [fontHover, setFontHover] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const observerElement = ref.current; // ref.currentの値を効果のクリーンアップ関数で使用するために変数に代入
+    const observerElement = ref.current;
 
     if (isMobile() && observerElement) {
       const observerOptions = {
@@ -54,7 +54,7 @@ const RandomFontText: React.FC<RandomFontTextProps> = ({ children }) => {
           entry.boundingClientRect.top < viewportHeight / 2 &&
           entry.boundingClientRect.bottom > viewportHeight / 2;
 
-        setCenteredOnMobile(isAtCenter);
+        setFontHover(isAtCenter);
       }, observerOptions);
 
       observer.observe(observerElement);
@@ -65,12 +65,12 @@ const RandomFontText: React.FC<RandomFontTextProps> = ({ children }) => {
     }
   }, []);
 
-  const handleMouseEnter = () => setCenteredOnMobile(true);
-  const handleMouseLeave = () => setCenteredOnMobile(false);
+  const handleMouseEnter = () => setFontHover(true);
+  const handleMouseLeave = () => setFontHover(false);
 
   const renderText = (text: string) => {
     return text.split('').map((char, index) => {
-      const currentFont = centeredOnMobile ? 'Noto Sans, sans-serif' : getRandomFont();
+      const currentFont = fontHover ? 'Noto Sans, sans-serif' : getRandomFont();
       return (
         <span key={index} style={{ fontFamily: currentFont }}>
           {char}
@@ -81,10 +81,11 @@ const RandomFontText: React.FC<RandomFontTextProps> = ({ children }) => {
 
   const renderChildren = (children: React.ReactNode): React.ReactNode => {
     return React.Children.map(children, (child) => {
-      // ... その他の条件分岐
-  
+      if (typeof child === 'string') {
+        return renderText(child);
+      }
+
       if (React.isValidElement<ChildElementProps>(child) && child.props.children) {
-        // 正しい型アサーションを使用する
         return React.cloneElement(child as ReactElement<ChildElementProps>, {
           ...child.props,
           children: renderChildren(child.props.children),

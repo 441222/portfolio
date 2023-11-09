@@ -10,8 +10,7 @@ const Contact: React.FC = () => {
     <NeumoCard className="p-6 rounded-lg shadow-md bg-white">
       <h2 className="text-3xl font-semibold mb-4"><RandomFontText>Contact</RandomFontText></h2>
       <div className="mb-6">
-        <p className="mb-2"><RandomFontText>お気軽にご連絡ください:</RandomFontText></p>
-        <a href="mailto:john.doe@example.com" className="underline"><RandomFontText>john.doe@example.com</RandomFontText></a>
+        <a className="mb-2"><RandomFontText>お気軽にご連絡ください:</RandomFontText></a>
       </div>
 
       <NeumoCard className="p-6 rounded-lg shadow-md bg-white">
@@ -30,8 +29,9 @@ const Contact: React.FC = () => {
         </a>
         <a href="https://github.com/441222" target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon icon={faGithub} size="2x" />
-        </a>        
+        </a>
       </div>
+      
     </NeumoCard>
   );
 }
