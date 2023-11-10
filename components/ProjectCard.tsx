@@ -6,13 +6,19 @@ import { Project } from './Projects';
 
 interface ProjectCardProps {
   project: Project;
-  settings: any; // Ideally, you should also define a more specific type for settings
+  settings: any; // Define a more specific type for settings if needed
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, settings }) => {
   const getYoutubeEmbedUrl = (url: string) => {
-    const regExpMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&#?]*).*/);
-    return regExpMatch ? `https://www.youtube.com/embed/${regExpMatch[1]}` : url;
+    let regExpMatch;
+    if (url.includes('list=')) { // Check if it's a playlist URL
+      regExpMatch = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]list=)|youtu\.be\/)([^?&"'>]+)/);
+      return regExpMatch ? `https://www.youtube.com/embed/videoseries?list=${regExpMatch[1]}` : url;
+    } else { // Regular YouTube video URL
+      regExpMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&#?]*).*/);
+      return regExpMatch ? `https://www.youtube.com/embed/${regExpMatch[1]}` : url;
+    }
   };
 
   const renderDescriptionWithLineBreaks = (description: string) => {
@@ -30,15 +36,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, settings }) => {
         {(project.fields.images?.length > 0 || project.fields.videos?.length > 0 || project.fields.docswellLink) && (
           <Slider {...settings}>
             {project.fields.images?.map((image, index) => (
-            <div key={index} className="flex justify-center items-center overflow-hidden mb-4" style={{ maxHeight: '500px' }}>
+              <div key={index} className="flex justify-center items-center overflow-hidden mb-4" style={{ maxHeight: '500px' }}>
                 <img
-                src={image.fields.file.url.startsWith('http') ? image.fields.file.url : `https:${image.fields.file.url}`}
-                alt={project.fields.title}
-                style={{ maxWidth: '100%', maxHeight: '400px', display: 'block', margin:'auto' }} // Set maximum height and center the image
+                  src={image.fields.file.url.startsWith('http') ? image.fields.file.url : `https:${image.fields.file.url}`}
+                  alt={project.fields.title}
+                  style={{ maxWidth: '100%', maxHeight: '400px', display: 'block', margin: 'auto' }}
                 />
-            </div>
+              </div>
             ))}
-
             {project.fields.videos?.map((video, index) => (
               <div key={index} className="flex justify-center items-center overflow-hidden">
                 <iframe
@@ -61,14 +66,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, settings }) => {
                     display: 'block',
                     margin: '0 auto',
                     padding: '0',
-                    width: '100%', // Responsive width
-                    height: '400px', // Fixed height, adjust as necessary
-                    maxWidth: '620px' // Maximum width
+                    width: '100%', 
+                    height: '400px',
+                    maxWidth: '620px'
                   }}
                   src={project.fields.docswellLink}
                   frameBorder="0"
                   allowFullScreen
-                  scrolling="no" // Disable scrolling
+                  scrolling="no" 
                   title="docswell-content"
                 ></iframe>
               </div>
@@ -76,7 +81,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, settings }) => {
           </Slider>
         )}
         <div className="flex flex-row justify-between items-center mb-4">
-          {/* Additional content can be added here if needed */}
+
         </div>
         <h2 className="text-xl mb-8">
           <RandomFontText>{project.fields.title}</RandomFontText>
