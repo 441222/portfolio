@@ -38,6 +38,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@types/react-slick": "^0.23.12",
     "@types/three": "^0.156.0",
     "glslify-loader": "^2.0.0",
     "raw-loader": "^4.0.2"

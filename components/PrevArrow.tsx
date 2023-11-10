@@ -1,6 +1,14 @@
 import React from 'react';
 
-const PrevArrow = ({ className, style, onClick }) => {
+// PrevArrowProps 型を定義します
+type PrevArrowProps = {
+  className: string;
+  style: React.CSSProperties;
+  onClick: () => void;
+};
+
+// 引数に PrevArrowProps 型を使用します
+const PrevArrow: React.FC<PrevArrowProps> = ({ className, style, onClick }) => {
   return (
     <div
       className={`${className} custom-arrow`}
