@@ -2,7 +2,7 @@ import React from 'react';
 import NeumoCard from './NeumoCard';
 import RandomFontText from '../components/RandomFontText';
 import Slider from 'react-slick';
-import { Project } from './Projects'; // Make sure this import reflects the updated Project interface
+import { Project } from './Projects';
 
 interface ProjectCardProps {
   project: Project;
@@ -30,14 +30,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, settings }) => {
         {(project.fields.images?.length > 0 || project.fields.videos?.length > 0 || project.fields.docswellLink) && (
           <Slider {...settings}>
             {project.fields.images?.map((image, index) => (
-              <div key={index} className="flex justify-center items-center overflow-hidden mb-4" style={{ maxHeight: '500px' }}>
+            <div key={index} className="flex justify-center items-center overflow-hidden mb-4" style={{ maxHeight: '500px' }}>
                 <img
-                  src={image.fields.file.url.startsWith('http') ? image.fields.file.url : `https:${image.fields.file.url}`}
-                  alt={project.fields.title}
-                  style={{ maxWidth: '100%', maxHeight: '400px', display: 'block', margin: 'auto' }}
+                src={image.fields.file.url.startsWith('http') ? image.fields.file.url : `https:${image.fields.file.url}`}
+                alt={project.fields.title}
+                style={{ maxWidth: '100%', maxHeight: '400px', display: 'block', margin:'auto' }} // Set maximum height and center the image
                 />
-              </div>
+            </div>
             ))}
+
             {project.fields.videos?.map((video, index) => (
               <div key={index} className="flex justify-center items-center overflow-hidden">
                 <iframe
@@ -60,21 +61,48 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, settings }) => {
                     display: 'block',
                     margin: '0 auto',
                     padding: '0',
-                    width: '100%', 
-                    height: '400px',
-                    maxWidth: '620px'
+                    width: '100%', // Responsive width
+                    height: '400px', // Fixed height, adjust as necessary
+                    maxWidth: '620px' // Maximum width
                   }}
                   src={project.fields.docswellLink}
                   frameBorder="0"
                   allowFullScreen
-                  scrolling="no" 
+                  scrolling="no" // Disable scrolling
                   title="docswell-content"
                 ></iframe>
               </div>
             )}
           </Slider>
         )}
-        {/* Rest of the component remains unchanged */}
+        <div className="flex flex-row justify-between items-center mb-4">
+          {/* Additional content can be added here if needed */}
+        </div>
+        <h2 className="text-xl mb-8">
+          <RandomFontText>{project.fields.title}</RandomFontText>
+        </h2>
+        <div className="mb-4">
+          <RandomFontText>
+            {renderDescriptionWithLineBreaks(project.fields.description)}
+          </RandomFontText>
+        </div>
+        <ul className="mb-4">
+          {project.fields.technologiesUsed?.map((tech, techIndex) => (
+            <li key={techIndex} className="inline-block mr-4 bg-glass-bg shadow-glass backdrop-blur border border-neumo-border px-3 py-1 rounded-md text-sm text-gray-900">
+              <RandomFontText>{tech}</RandomFontText>
+            </li>
+          ))}
+        </ul>
+        {project.fields.link && (
+          <a
+            href={project.fields.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            <RandomFontText>View Project</RandomFontText>
+          </a>
+        )}
       </NeumoCard>
     </div>
   );
