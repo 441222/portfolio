@@ -3,6 +3,7 @@ import NeumoCard from './NeumoCard';
 import RandomFontText from '../components/RandomFontText';
 import Slider from 'react-slick';
 import { Project } from './Projects';
+import ReactMarkdown from 'react-markdown';
 
 interface ProjectCardProps {
   project: Project;
@@ -21,15 +22,29 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, settings }) => {
     }
   };
 
-  const renderDescriptionWithLineBreaks = (description: string) => {
-    return description.split('\n').map((text, index) => (
-      <span key={index}>
-        {text}
-        <br />
-      </span>
+
+  const renderDescriptionWithMarkdown = (description: string) => {
+    const paragraphs = description.split('\n');
+  
+    return paragraphs.map((paragraph, index) => (
+      <React.Fragment key={index}>
+        <ReactMarkdown
+          components={{
+            // 他の要素のカスタマイズ
+            p: ({ node, ...props }) => <RandomFontText><p {...props} /></RandomFontText>,
+            // リンクのカスタマイズ
+            a: ({ node, ...props }) => <a {...props} style={{ textDecoration: 'underline' }} />,
+          }}
+        >
+          {paragraph}
+        </ReactMarkdown>
+        {paragraph === '' && <br />}
+      </React.Fragment>
     ));
   };
-
+  
+  
+  
   return (
     <div className="flex flex-col">
       <NeumoCard className="flex-1 p-6 flex flex-col">
@@ -87,9 +102,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, settings }) => {
           <RandomFontText>{project.fields.title}</RandomFontText>
         </h2>
         <div className="mb-4">
-          <RandomFontText>
-            {renderDescriptionWithLineBreaks(project.fields.description)}
-          </RandomFontText>
+            {renderDescriptionWithMarkdown(project.fields.description)}
         </div>
         <ul className="mb-4">
           {project.fields.technologiesUsed?.map((tech, techIndex) => (
