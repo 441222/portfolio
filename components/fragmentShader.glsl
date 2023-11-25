@@ -19,7 +19,7 @@ vec3 light_reflection(vec3 lightColor) {
   // vector and the vector going to the light.
   vec3 diffuse = lightColor * max(dot(vSurfaceToLight, vNormal), 0.0);
 
-  // Combine 
+  // Combine the two light calculations
   return (ambient + diffuse);
 }
 
@@ -38,4 +38,7 @@ void main(void) {
   gl_FragColor.g = max(colorNoise.g, uColor.g);
   gl_FragColor.b = max(colorNoise.b, uColor.b);
   gl_FragColor.a = 1.0;
+  
+  gl_FragColor.rgb += vNormal * 0.1;
+
 }

@@ -11,7 +11,7 @@ const ThankYou: React.FC = () => {
   return (
     <div className="min-h-screen bg-neumo p-4 flex flex-col">
       <Head>
-        <title>お問い合わせ完了 | Yoshiyuki Ootani</title>
+        <title>お問い合わせ完了 | TokyoTeleport</title>
         <meta name="description" content="お問い合わせいただきありがとうございます。" />
       </Head>
 

@@ -63,7 +63,7 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
 
           <div className="mb-6 text-shadow font-dot">
             <RandomFontText>
-              メディアアート系のプログラミングができます。
+              メディアアート系のプログラマーです。
             </RandomFontText>
 
           </div>
