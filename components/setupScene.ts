@@ -6,7 +6,8 @@ import backgroundVertexShader from './backgroundVertexShader.glsl';
 import vertexShader from './vertexShader.glsl';
 import fragmentShader from './fragmentShader.glsl';
 
-export const setupScene = async (canvas) => {
+// HTMLCanvasElement型を明示的に指定
+export const setupScene = async (canvas: HTMLCanvasElement): Promise<{ renderer: THREE.WebGLRenderer, scene: THREE.Scene, camera: THREE.PerspectiveCamera, mixer?: THREE.AnimationMixer }> => {
   const width = canvas.clientWidth;
   const height = canvas.clientHeight;
 
@@ -35,13 +36,14 @@ export const setupScene = async (canvas) => {
 
   // FBXモデルの読み込み
   const loader = new FBXLoader();
-  let mixer;
-  let fbxModel; // モデルのメッシュを格納する変数
+  let mixer: THREE.AnimationMixer | undefined;
+  let fbxModel: THREE.Object3D | null = null;
+
   loader.load('/portfolio/models/test.fbx', (fbx) => {
     fbxModel = fbx; // ローダーからのFBXをfbxModelに格納
     // FBXモデルのスケールや位置の調整
     fbxModel.traverse(child => {
-      if (child.isMesh) {
+      if (child instanceof THREE.Mesh){
         const mesh = child as THREE.Mesh;
         const normalMatrix = new THREE.Matrix3().getNormalMatrix(mesh.matrixWorld);
 
@@ -72,12 +74,14 @@ export const setupScene = async (canvas) => {
     scene.add(fbxModel);
 
     // アニメーションミキサーの作成
-    mixer = new THREE.AnimationMixer(fbxModel);
+    mixer = new THREE.AnimationMixer(fbxModel); // mixer を設定
+
     if (fbxModel.animations.length > 0) {
       const action = mixer.clipAction(fbxModel.animations[0]);
       action.play();
       action.timeScale = 0.3;
     }
+
   });
 
   // 光源位置の初期値
@@ -103,8 +107,9 @@ export const setupScene = async (canvas) => {
 
     // fbxModelが定義されている場合のみ処理を実行
     if (fbxModel) {
-      fbxModel.traverse(child => {
-        if (child.isMesh && child.material instanceof THREE.ShaderMaterial) {
+      fbxModel.traverse((child: THREE.Object3D) => {
+        // 'instanceof'を使用してMeshかどうかをチェック
+        if (child instanceof THREE.Mesh && child.material instanceof THREE.ShaderMaterial) {
           child.material.uniforms.uLightPos.value = lightPos;
         }
       });
@@ -115,5 +120,5 @@ export const setupScene = async (canvas) => {
 
   animate();
 
-  return { renderer, scene, camera };
+  return { renderer, scene, camera, mixer };
 };

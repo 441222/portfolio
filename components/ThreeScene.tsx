@@ -14,9 +14,8 @@ const ThreeScene: React.FC = () => {
   }>({});
 
   useEffect(() => {
-    if (canvasRef.current) {
-      // setupSceneを非同期で呼び出し
-      (async () => {
+    const initializeScene = async () => {
+      if (canvasRef.current) {
         const { renderer, scene, camera, mixer } = await setupScene(canvasRef.current);
         sceneRef.current = { renderer, scene, camera, mixer };
         handleResize(sceneRef);
@@ -40,11 +39,13 @@ const ThreeScene: React.FC = () => {
         };
 
         animate();
-      })();
-    }
+      }
+    };
 
+    initializeScene();
+    
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', () => handleResize(sceneRef));
       if (sceneRef.current.raf) {
         cancelAnimationFrame(sceneRef.current.raf);
       }
