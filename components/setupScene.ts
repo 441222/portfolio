@@ -90,6 +90,33 @@ export const setupScene = async (canvas: HTMLCanvasElement): Promise<{ renderer:
   // 時間管理用のクロック
   const clock = new THREE.Clock();
 
+  // アニメーションスピードとスクロール検出のための変数
+  let animationSpeed = 0.8;
+  let lastScrollTop = 0;
+  let scrollTimeout: number | null = null;
+
+  // スクロールイベントのハンドラ
+  const onScroll = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // スクロール方向に基づいて速度を変更
+    if (scrollTop > lastScrollTop) {
+      animationSpeed = 10.0; // 下にスクロール
+    } else {
+      animationSpeed = 10.0; // 上にスクロール
+    }
+    lastScrollTop = scrollTop;
+
+    // スクロール停止の検出
+    clearTimeout(scrollTimeout as number);
+    scrollTimeout = setTimeout(() => {
+      animationSpeed = 0.3; // 元の速度に戻す
+    }, 150)as unknown as number; // 150ミリ秒後にスクロールが止まったと判断
+  };
+
+  // スクロールイベントのリスナーを追加
+  window.addEventListener('scroll', onScroll);
+
   // アニメーションループ
   const animate = () => {
     requestAnimationFrame(animate);
@@ -97,7 +124,7 @@ export const setupScene = async (canvas: HTMLCanvasElement): Promise<{ renderer:
     // FBXアニメーションの更新
     if (mixer) {
       const delta = clock.getDelta();
-      mixer.update(delta);
+      mixer.update(delta * animationSpeed);
     }
 
     // 光源位置の更新
