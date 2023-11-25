@@ -39,7 +39,7 @@ export const setupScene = async (canvas: HTMLCanvasElement): Promise<{ renderer:
   let mixer: THREE.AnimationMixer | undefined;
   let fbxModel: THREE.Object3D | null = null;
 
-  loader.load('/portfolio/models/test.fbx', (fbx) => {
+  loader.load('/portfolio/models/folio.fbx', (fbx) => {
     fbxModel = fbx; // ローダーからのFBXをfbxModelに格納
     // FBXモデルのスケールや位置の調整
     fbxModel.traverse(child => {
