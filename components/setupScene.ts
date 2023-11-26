@@ -70,7 +70,7 @@ export const setupScene = async (canvas: HTMLCanvasElement): Promise<{ renderer:
     // モデルの位置を原点に移動
     fbxModel.scale.set(0.01, 0.01, 0.01);
     fbxModel.rotateY(Math.PI*0.5);
-    fbxModel.translateY(-0.7);
+    fbxModel.translateY(-0.9);
     scene.add(fbxModel);
 
     // アニメーションミキサーの作成
@@ -110,7 +110,7 @@ export const setupScene = async (canvas: HTMLCanvasElement): Promise<{ renderer:
     // スクロール停止の検出
     clearTimeout(scrollTimeout as number);
     scrollTimeout = setTimeout(() => {
-      animationSpeed = 0.3; // 元の速度に戻す
+      animationSpeed = 0.4; // 元の速度に戻す
     }, 150)as unknown as number; // 150ミリ秒後にスクロールが止まったと判断
   };
 

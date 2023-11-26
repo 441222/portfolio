@@ -29,12 +29,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, settings }) => {
     return paragraphs.map((paragraph, index) => (
       <React.Fragment key={index}>
         <ReactMarkdown
-          components={{
-            // 他の要素のカスタマイズ
-            p: ({ node, ...props }) => <RandomFontText><p {...props} /></RandomFontText>,
-            // リンクのカスタマイズ
-            a: ({ node, ...props }) => <a {...props} style={{ textDecoration: 'underline' }} />,
-          }}
+            components={{
+              // 他の要素のカスタマイズ
+              p: ({ node, ...props }) => <RandomFontText><p {...props} /></RandomFontText>,
+              // リンクのカスタマイズ
+              a: ({ node, ...props }) => <a {...props} target="_blank" style={{ textDecoration: 'underline' }} />,
+            }}
         >
           {paragraph}
         </ReactMarkdown>
