@@ -5,6 +5,7 @@ uniform vec3 uLightColor;
 uniform float uLightIntensity;
 uniform float uNoiseScale;
 uniform float uNoiseCoef;
+uniform float uTime;
 
 varying vec3 vNormal;
 varying vec3 vSurfaceToLight;
@@ -31,7 +32,7 @@ void main(void) {
   vec2 uv = gl_FragCoord.xy;
   uv /= uNoiseScale;
 
-  vec3 colorNoise = vec3(snoise2(uv) * 0.5 + 0.5);
+  vec3 colorNoise = vec3(snoise2(uv + uTime) * 0.5 + 0.5);
   colorNoise *= pow(light_value.r, uNoiseCoef);
 
   gl_FragColor.r = max(colorNoise.r, uColor.r);

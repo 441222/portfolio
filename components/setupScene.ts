@@ -26,7 +26,9 @@ export const setupScene = async (canvas: HTMLCanvasElement): Promise<{ renderer:
   const backgroundMaterial = new THREE.ShaderMaterial({
     vertexShader: backgroundVertexShader,
     fragmentShader: glslify(backgroundFragmentShader),
-    uniforms: {},
+    uniforms: {
+      uTime: { value: 0.0 },
+    },
     depthWrite: false,
     depthTest: false,
   });
@@ -60,7 +62,8 @@ export const setupScene = async (canvas: HTMLCanvasElement): Promise<{ renderer:
             uNoiseMax: { value: 200.0 },
             uNoiseScale: { value: 0.8 },
             uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-            normalMatrix: { value: normalMatrix }
+            normalMatrix: { value: normalMatrix },
+            uTime: { value: 0.0 },
           }
         });
         mesh.material = material;
@@ -138,9 +141,14 @@ export const setupScene = async (canvas: HTMLCanvasElement): Promise<{ renderer:
         // 'instanceof'を使用してMeshかどうかをチェック
         if (child instanceof THREE.Mesh && child.material instanceof THREE.ShaderMaterial) {
           child.material.uniforms.uLightPos.value = lightPos;
+          child.material.uniforms.uTime.value = clock.getElapsedTime();
         }
       });
     }
+
+    // 時間に基づいてuTimeユニフォームを更新
+    backgroundMaterial.uniforms.uTime.value = clock.getElapsedTime();
+
 
     renderer.render(scene, camera);
   };
