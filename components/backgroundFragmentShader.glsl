@@ -8,8 +8,8 @@ void main() {
     float gradient = uv.y; // y座標をグラデーションとして使用
 
     // 時間に基づいてノイズシードを変更
-    vec3 colorNoise = vec3(snoise2(uv + uTime) * 0.5 + 0.5) * 0.1 * pow(gradient, 0.4) + 0.5;
-    vec3 green = vec3(57.0/255.0, 57.0/255.0, 57.0/255.0); // 正しい緑色の定義
-    colorNoise = colorNoise * green;
+    vec3 colorNoise = vec3(snoise2(uv*0.5 + uTime) * 0.3 + 0.5) * 0.1 * pow(gradient, 0.4) + 0.5;
+    vec3 col = vec3(57.0/255.0, 57.0/255.0, 57.0/255.0); // 正しい緑色の定義
+    colorNoise = colorNoise * col;
     gl_FragColor = vec4(colorNoise, 1.0); // カスタム背景色を設定
 }
