@@ -6,34 +6,39 @@ import NeumoCard from '../components/NeumoCard';
 import NeumoButton from '../components/NeumoButton';
 import About from '../components/About';
 import Projects from '../components/Projects';
+import Jobs from '../components/Jobs';
 import Contact from '../components/Contact';
 import contentfulClient from '../lib/contentful';
 import FluidBackground from '../components/FluidBackground';
 import RandomMovingObjectsScene from '../components/RandomMovingObjectsScene';
 import { Project } from '../components/Projects';
+import { Job } from '../components/Jobs';
 import RandomFontText from '../components/RandomFontText';
 import ThreeScene from '../components/ThreeScene';
 
 
 export const getStaticProps = async () => {
   try {
-    const entries = await contentfulClient.getEntries({ content_type: 'project' });
-    console.log(entries);
-    const projects = entries.items;
+    const projectEntries = await contentfulClient.getEntries({ content_type: 'project' });
+    const jobEntries = await contentfulClient.getEntries({ content_type: 'job' }); // 'job' はContentfulでの対応するコンテンツタイプ
+
+    const projects = projectEntries.items;
+    const jobs = jobEntries.items;
+
     return {
-      props: { projects },
+      props: { projects, jobs }, // 両方のデータをpropsに追加
     };
   } catch (error) {
     console.error("Error fetching data from Contentful:", error);
     return {
-      props: { projects: [] },
+      props: { projects: [], jobs: [] },
     }
   }
 };
 
 
 
-const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
+const Home: React.FC<{ projects: Project[], jobs: Job[] }> = ({ projects, jobs }) => {
   return (
     <div className="min-h-screen bg-neumo p-4 flex flex-col">
       <Head>
@@ -76,6 +81,8 @@ const Home: React.FC<{ projects: Project[] }> = ({ projects }) => {
           <About  />
           <div id="projects"></div>
           <Projects projects={projects} />
+          <div id="jobs"></div>
+          <Jobs jobs={jobs} />
           <div id="contact"></div>
           <Contact />
 
