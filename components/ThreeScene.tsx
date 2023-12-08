@@ -13,6 +13,7 @@ const ThreeScene: React.FC = () => {
     raf?: number;
   }>({});
 
+
   useEffect(() => {
     const initializeScene = async () => {
       if (canvasRef.current) {
@@ -22,11 +23,17 @@ const ThreeScene: React.FC = () => {
         window.addEventListener('resize', () => handleResize(sceneRef), { passive: true });
 
         const clock = new THREE.Clock();
+        let frame = 0;
 
         const animate = () => {
           requestAnimationFrame(animate);
+          frame++; // フレームカウンターを増やす
+          if (frame % 2 !== 0) {
+            return; // 奇数フレームでは描画をスキップ
+          }
 
           const delta = clock.getDelta();
+
 
           // アニメーションミキサーの更新
           if (sceneRef.current.mixer) {

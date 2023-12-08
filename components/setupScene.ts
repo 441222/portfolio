@@ -14,10 +14,10 @@ export const setupScene = async (canvas: HTMLCanvasElement): Promise<{ renderer:
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xffffff);
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
   renderer.setSize(width, height);
 
-  const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 10000);
+  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10);
   camera.position.set(0, 0, 3);
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
