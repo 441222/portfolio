@@ -17,10 +17,11 @@ import RandomFontText from '../components/RandomFontText';
 import ThreeScene from '../components/ThreeScene';
 
 
+
 export const getStaticProps = async () => {
   try {
     const projectEntries = await contentfulClient.getEntries({ content_type: 'project' });
-    const jobEntries = await contentfulClient.getEntries({ content_type: 'job' }); // 'job' はContentfulでの対応するコンテンツタイプ
+    const jobEntries = await contentfulClient.getEntries({ content_type: 'job' }); 
 
     const projects = projectEntries.items;
     const jobs = jobEntries.items;
