@@ -18,6 +18,7 @@ import ThreeScene from '../components/ThreeScene';
 
 
 
+
 export const getStaticProps = async () => {
   try {
     const projectEntries = await contentfulClient.getEntries({ content_type: 'project' });
