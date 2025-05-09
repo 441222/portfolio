@@ -16,10 +16,12 @@ const About: React.FC = () => {
             情報科学芸術大学院大学 メディア表現研究科 修了<br/>
             株式会社GOCCO. (2021-2023)<br/>
             日本総合ビジネス専門学校 非常勤講師 (2022)<br/>
-            多摩美術大学 メディア芸術コース研究室 非常勤嘱託 (2023-) <br/><br/><br/>
+            多摩美術大学 メディア芸術コース研究室 非常勤嘱託 (2023-2024) <br/>
+            株式会社マーブル (2024-) <br/>
+            <br/><br/><br/>
 
             <h3 className="text-l font-bold mb-3">Skills</h3>
-            Unity, UnrealEngine, TouchDesigner, Houdini, Rhinoceros/Grasshopper, Python, Next.js, MicroPython, Arduino<br/>
+            Unity, UnrealEngine, TouchDesigner, Houdini, Rhinoceros/Grasshopper, Python, Swift, Next.js, MicroPython, Arduino, C/C#<br/>
             </RandomFontText>
 
 

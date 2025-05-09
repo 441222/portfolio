@@ -27,7 +27,7 @@ const Contact: React.FC = () => {
         <a href="https://www.facebook.com/yoshiyuki.ohtani.10" target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon icon={faFacebook} size="2x" />
         </a>
-        <a href="https://github.com/441222" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/otanl" target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon icon={faGithub} size="2x" />
         </a>
       </div>
